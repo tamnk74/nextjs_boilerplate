@@ -2,35 +2,20 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { MainLayout } from 'components/layouts';
 import { ListGroup } from 'react-bootstrap';
+import { Todo } from 'models';
+import db from 'libs/db';
 
 export const getStaticProps = async () => {
   return {
     props: {
-      toDos: [
-        {
-          name: 'Leaning Next Js',
-          status: 1
-        },
-        {
-          name: 'Leaning Nest Js',
-          status: 2
-        },
-        {
-          name: 'Leaning CI-CD',
-          status: 0
-        },
-        {
-          name: 'Leaning Testing',
-          status: 0
-        }
-      ]
+      toDos: db.getTodo()
     }
   };
 };
 
 const variants = ['light', 'primary', 'dark'];
 
-export default function ToDo({ toDos }) {
+export default function ToDoList({ toDos: Todo[] }) {
   return (
     <MainLayout>
       <Head>

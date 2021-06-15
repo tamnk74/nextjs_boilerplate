@@ -1,8 +1,9 @@
 import { MainLayout } from 'components/layouts';
 import { getAllPostIds, getPostData } from 'libs/post';
 import Head from 'next/head';
-import utilStyles from 'styles/utils.module.scss';
 import { GetStaticProps, GetStaticPaths } from 'next';
+
+import 'styles/utils.module.scss';
 
 export default function Post({
   postData
@@ -12,21 +13,22 @@ export default function Post({
     date: string;
     contentHtml: string;
   };
-}) {
+}): React.ReactElement {
   return (
-    <MainLayout>
+    <MainLayout siteTitle={postData.title}>
       <Head>
         <title>{postData.title}</title>
       </Head>
       <article>
-        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-        <div className={utilStyles.lightText}>{postData.date.toString()}</div>
+        <h1 className="headingXl">{postData.title}</h1>
+        <div className="lightText">{postData.date.toString()}</div>
         <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
       </article>
     </MainLayout>
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostIds();
   return {

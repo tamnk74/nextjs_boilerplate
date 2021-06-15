@@ -4,6 +4,11 @@ import { MainLayout } from '../../components/layouts';
 import { ListGroup } from 'react-bootstrap';
 import { Todo } from '../../models';
 import { GetStaticProps } from 'next';
+import { ParsedUrlQuery } from 'querystring';
+
+interface IParams extends ParsedUrlQuery {
+  id: string;
+}
 
 const toDos: Todo[] = [
   {
@@ -24,7 +29,12 @@ const toDos: Todo[] = [
   }
 ];
 
-export const getStaticPaths = async () => {
+type PathData = {
+  paths: { params: { id: string } }[];
+  fallback: false;
+};
+// eslint-disable-next-line @typescript-eslint/require-await
+export const getStaticPaths = async (): Promise<PathData> => {
   const paths = toDos.map((_, index) => {
     return {
       params: { id: `${index}` }
@@ -37,19 +47,20 @@ export const getStaticPaths = async () => {
   };
 };
 
+// eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticProps: GetStaticProps = async (context) => {
-  const id = context.params.id as string;
+  const { id } = context.params as IParams;
 
   return {
     props: {
-      toDo: toDos[id]
+      toDo: toDos[id] as Todo
     }
   };
 };
 
 const variants = ['light', 'primary', 'dark'];
 
-export default function ToDo({ toDo }) {
+export default function ToDo({ toDo }: { toDo: Todo }): React.ReactElement {
   return (
     <MainLayout>
       <Head>

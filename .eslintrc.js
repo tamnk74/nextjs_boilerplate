@@ -8,7 +8,6 @@ module.exports = {
     project: 'tsconfig.json'
   },
   rules: {
-    eqeqeq: 'error',
     'no-var': 'error',
     'no-await-in-loop': 'error',
     'no-console': 'error',

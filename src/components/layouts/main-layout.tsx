@@ -1,16 +1,22 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import styles from './main-layout.module.scss';
-import utilStyles from 'styles/utils.module.scss';
 import Link from 'next/link';
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 
-const name = 'Shu Uesugi';
-export const siteTitle = 'Next.js Sample Website';
+import './main-layout.module.scss';
 
-export function MainLayout({ children, home = false }) {
+type AppProps = {
+  children: React.ReactElement | React.ReactElement[];
+  home?: boolean;
+  siteTitle?: string;
+};
+
+export function MainLayout({
+  children,
+  home = false,
+  siteTitle = 'Nextjs'
+}: AppProps): React.ReactElement {
   return (
-    <div className={styles.container}>
+    <div className="container">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="Learn how to build a personal website using Next.js" />
@@ -38,7 +44,7 @@ export function MainLayout({ children, home = false }) {
       </Navbar>
       <main>{children}</main>
       {!home && (
-        <div className={styles.backToHome}>
+        <div className="back-to-home">
           <Link href="/">
             <a>← Back to home</a>
           </Link>
