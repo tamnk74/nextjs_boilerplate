@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { AppProps as NextAppProps } from 'next/app';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -16,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps): React.ReactElem
   return (
     <QueryClientProvider client={queryClient}>
       <Component {...pageProps} />
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

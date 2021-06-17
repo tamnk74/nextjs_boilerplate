@@ -3,64 +3,42 @@ import Link from 'next/link';
 import { MainLayout } from '../../components/layouts';
 import { ListGroup } from 'react-bootstrap';
 import { Todo } from '../../models';
-import { GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
+import axios from 'axios';
 
 interface IParams extends ParsedUrlQuery {
   id: string;
 }
 
-const toDos: Todo[] = [
-  {
-    name: 'Leaning Next Js',
-    status: 1
-  },
-  {
-    name: 'Leaning Nest Js',
-    status: 2
-  },
-  {
-    name: 'Leaning CI-CD',
-    status: 0
-  },
-  {
-    name: 'Leaning Testing',
-    status: 0
-  }
-];
-
-type PathData = {
-  paths: { params: { id: string } }[];
-  fallback: false;
-};
 // eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths = async (): Promise<PathData> => {
-  const paths = toDos.map((_, index) => {
-    return {
-      params: { id: `${index}` }
-    };
-  });
-
+export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => {
   return {
-    paths,
-    fallback: false
+    paths: [],
+    fallback: 'blocking'
   };
 };
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params as IParams;
-
+  const { data } = await axios.get<{ data: Todo }>('http://localhost:3000/api/todos/' + id);
+  // eslint-disable-next-line no-console
+  console.log(11111, data);
   return {
     props: {
-      toDo: toDos[id] as Todo
+      toDo: data
     }
   };
 };
 
 const variants = ['light', 'primary', 'dark'];
 
-export default function ToDo({ toDo }: { toDo: Todo }): React.ReactElement {
+type PropsType = {
+  toDo: Todo;
+};
+
+export default function ToDo({ toDo }: PropsType): React.ReactElement {
   return (
     <MainLayout>
       <Head>
