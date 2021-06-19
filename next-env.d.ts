@@ -2,4 +2,3 @@
 /// <reference types="next/types/global" />
 
 declare module '*.scss';
-

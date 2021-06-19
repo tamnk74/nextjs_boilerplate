@@ -2,23 +2,22 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { MainLayout } from 'components/layouts';
 import { useForm, Controller } from 'react-hook-form';
-import { ListGroup, Row, Form } from 'react-bootstrap';
 import { Todo } from 'models';
 import axios from 'axios';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 const getToDos = async (): Promise<Todo[]> => {
-  const { data } = await axios.get<{ data: Todo[] }>(
+  const { data } = await axios.get<string, { data: Todo[] }>(
     'http://localhost:3000/api/todos?limit=10&page=1'
   );
 
   return data;
 };
 
-const postTodo = async (data: Todo): Promise<Todo[]> => {
-  const { result } = await axios.post<{ data: Todo }>('http://localhost:3000/api/todos', data);
+const postTodo = async (data: Todo): Promise<Todo> => {
+  const { data: rs } = await axios.post<string, { data: Todo }>('http://localhost:3000/api/todos', data);
 
-  return result;
+  return rs;
 };
 
 export default function ToDoList(): React.ReactElement {
@@ -46,30 +45,30 @@ export default function ToDoList(): React.ReactElement {
         <title>Todo List</title>
       </Head>
       <div className="container">
-        <Row className="justify-content-md-center">
+        <div className="justify-content-md-center">
           <h2>To do list </h2>
-        </Row>
-        <Row className="justify-content-md-center">
-          <Form onSubmit={handleSubmit(onSubmit)}>
+        </div>
+        <div className="justify-content-md-center">
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Controller
               name="name"
               control={control}
               defaultValue=""
               render={({ field }) => (
-                <Form.Control {...field} type="text" id="name_ip" placeholder="something to do" />
+                <input {...field} type="text" id="name_ip" placeholder="something to do" />
               )}
             />
-          </Form>
-        </Row>
-        <Row className="justify-content-md-center">
-          <ListGroup id="to-do-list">
+          </form>
+        </div>
+        <div className="justify-content-md-center">
+          <div id="to-do-list">
             {toDos.map((todo) => (
-              <ListGroup.Item key={todo.id}>
+              <div key={todo.id}>
                 <Link href={`/to-do/${todo.id}`}>{todo.name}</Link>
-              </ListGroup.Item>
+              </div>
             ))}
-          </ListGroup>
-        </Row>
+          </div>
+        </div>
       </div>
     </MainLayout>
   );

@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { MainLayout } from '../../components/layouts';
-import { ListGroup } from 'react-bootstrap';
 import { Todo } from '../../models';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
@@ -23,16 +22,13 @@ export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params as IParams;
   const { data } = await axios.get<{ data: Todo }>('http://localhost:3000/api/todos/' + id);
-  // eslint-disable-next-line no-console
-  console.log(11111, data);
+
   return {
     props: {
       toDo: data
     }
   };
 };
-
-const variants = ['light', 'primary', 'dark'];
 
 type PropsType = {
   toDo: Todo;
@@ -45,11 +41,11 @@ export default function ToDo({ toDo }: PropsType): React.ReactElement {
         <title>{toDo.name}</title>
       </Head>
       <div className="container">
-        <ListGroup>
-          <ListGroup.Item variant={variants[toDo.status]}>
+        <div>
+          <div>
             <Link href={'/to-do/'}>{toDo.name}</Link>
-          </ListGroup.Item>
-        </ListGroup>
+          </div>
+        </div>
       </div>
     </MainLayout>
   );
