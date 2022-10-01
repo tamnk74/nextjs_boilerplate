@@ -1,0 +1,142 @@
+@layer components {
+  .text-h1 {
+    @apply font-semibold;
+    letter-spacing: -0.4px;
+    font-size: 2.5rem; // 40px
+    line-height: 2.75rem; // 44px
+
+    @screen 3xl {
+      font-size: 3rem; // 48px
+      line-height: 3.25rem; // 52px
+    }
+  }
+
+  .text-h2 {
+    @apply font-semibold;
+    letter-spacing: -0.2px;
+    font-size: 2rem; // 32px
+    line-height: 2.25rem; // 36px
+
+    @screen 3xl {
+      font-size: 2.5rem; // 40px
+      line-height: 2.75rem; // 44px
+    }
+  }
+
+  .text-h3 {
+    @apply font-semibold;
+    letter-spacing: -0.2px;
+    font-size: 1.5rem; // 24px
+    line-height: 1.75rem; // 28px
+
+    @screen 3xl {
+      font-size: 2rem; // 32px
+      line-height: 2.25rem; // 36px
+    }
+  }
+
+  .text-h4 {
+    @apply font-semibold;
+    letter-spacing: -0.2px;
+    font-size: 1.25rem; // 20px
+    line-height: 1.5rem; // 24px
+
+    @screen 3xl {
+      font-size: 1.5rem; // 24px
+      line-height: 1.75rem; // 28px
+    }
+  }
+
+  .text-h5 {
+    @apply font-semibold;
+    letter-spacing: -0.2px;
+    font-size: 0.875rem; // 14px
+    line-height: 1rem; // 16px
+
+    @screen xl {
+      font-size: 1rem; // 16px
+      line-height: 1.125rem; // 18px
+    }
+
+    @screen 3xl {
+      font-size: 1.25rem; // 20px
+      line-height: 1.5rem; // 24px
+    }
+  }
+
+  .text-subtitle-caption {
+    @apply font-semibold;
+    letter-spacing: -0.1px;
+    font-size: 0.75rem; // 12px
+    line-height: 0.875rem; // 14px
+
+    @screen xl {
+      font-size: 0.875rem; // 14px
+      line-height: 1rem; // 16px
+    }
+
+    @screen 3xl {
+      font-size: 1rem; // 16px
+      line-height: 1.125rem; // 18px
+    }
+  }
+
+  .text-tiny {
+    @apply font-semibold;
+    letter-spacing: -0.1px;
+    font-size: 0.625rem; // 10px
+    line-height: 0.75rem; // 12px
+  }
+
+  .text-body {
+    letter-spacing: -0.1px;
+    font-size: 0.75rem; // 12px
+    line-height: 1.125rem; // 18px
+
+    @screen xl {
+      font-size: 0.875rem; // 14px
+      line-height: 1.375rem; // 22px
+    }
+
+    @screen 3xl {
+      font-size: 1rem; // 16px
+      line-height: 1.5rem; // 24px
+    }
+  }
+
+  .text-body-semibold {
+    @apply font-semibold text-body;
+  }
+
+  .text-body-small {
+    letter-spacing: -0.1px;
+    font-size: 0.75rem; // 12px
+    line-height: 1.125rem; // 18px
+
+    @screen 3xl {
+      font-size: 0.875rem; // 14px
+      line-height: 1.375rem; // 22px
+    }
+  }
+
+  .text-body-small-semibold {
+    @apply font-semibold text-body-small;
+  }
+
+  .text-button {
+    @apply font-semibold;
+    letter-spacing: -0.1px;
+    font-size: 0.75rem; // 12px
+    line-height: 1rem; // 16px
+
+    @screen xl {
+      font-size: 0.875rem; // 14px
+      line-height: 1.25rem; // 20px
+    }
+
+    @screen 3xl {
+      font-size: 1rem; // 16px
+      line-height: 1.5rem; // 24px
+    }
+  }
+}

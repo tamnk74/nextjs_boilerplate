@@ -3,11 +3,11 @@ import path from 'path';
 import matter from 'gray-matter';
 import remark from 'remark';
 import html from 'remark-html';
-import { Post } from 'models/Post';
+import { Post } from 'src/models/Post';
 
 const postsDirectory = path.join(process.cwd(), '/src/data/posts');
 
-export function getSortedPostsData(): Post[] {
+export function getSortedPostsData(): Promise<Post[]> {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
@@ -28,24 +28,24 @@ export function getSortedPostsData(): Post[] {
     };
   });
   // Sort posts by date
-  return allPostsData.sort((a, b) => {
+  return Promise.resolve(allPostsData.sort((a, b) => {
     if (a.date < b.date) {
       return 1;
     } else {
       return -1;
     }
-  });
+  }));
 }
 
-export function getAllPostIds(): { params: { id: string } }[] {
+export function getAllPostIds(): Promise<{ params: { id: string } }[]> {
   const fileNames = fs.readdirSync(postsDirectory);
-  return fileNames.map((fileName) => {
+  return Promise.resolve(fileNames.map((fileName) => {
     return {
       params: {
         id: fileName.replace(/\.md$/, '')
       }
     };
-  });
+  }));
 }
 
 export async function getPostData(id: string): Promise<Post> {

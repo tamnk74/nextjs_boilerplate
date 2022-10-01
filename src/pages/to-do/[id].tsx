@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { MainLayout } from '../../components/layouts';
-import { Todo } from '../../models';
+import { MainLayout } from 'src/components/layouts';
+import { Todo } from 'src/models';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import axios from 'axios';

@@ -1,9 +1,9 @@
-import { MainLayout } from 'components/layouts';
-import { getAllPostIds, getPostData } from 'libs/post';
+import { MainLayout } from 'src/components/layouts';
+import { getAllPostIds, getPostData } from 'src/libs/post';
 import Head from 'next/head';
 import { GetStaticProps, GetStaticPaths } from 'next';
 
-import 'styles/utils.module.scss';
+import 'src/styles/utils.module.scss';
 
 export default function Post({
   postData
@@ -28,9 +28,8 @@ export default function Post({
   );
 }
 
-// eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllPostIds();
+  const paths = await getAllPostIds();
   return {
     paths,
     fallback: false

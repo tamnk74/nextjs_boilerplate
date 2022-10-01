@@ -14,18 +14,12 @@
       "resolveJsonModule": true,
       "isolatedModules": true,
       "jsx": "preserve",
-      "baseUrl": "./src",
+      "baseUrl": ".",
       "noUnusedLocals": true,
       "noUnusedParameters": true,
       "noImplicitReturns": true,
       "noFallthroughCasesInSwitch": true,
       "noUncheckedIndexedAccess": true,
-      "paths": {
-        "components/*": ["components/*"],
-        "styles/*": ["styles/*"],
-        "lib/*": ["lib/*"],
-        "models/*": ["models/*"],
-      }
     },
     "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx"],
     "exclude": ["node_modules", ".eslintrc.js", "*.config.js"]

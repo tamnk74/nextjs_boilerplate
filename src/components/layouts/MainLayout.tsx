@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 
-import './main-layout.module.scss';
+import './MainLayout.module.scss';
 
 type AppProps = {
   children: React.ReactElement | React.ReactElement[];
@@ -15,7 +15,7 @@ export function MainLayout({
   siteTitle = 'Nextjs'
 }: AppProps): React.ReactElement {
   return (
-    <div className="container">
+    <div className="w-full">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="Learn how to build a personal website using Next.js" />
@@ -28,7 +28,7 @@ export function MainLayout({
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <div className="w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800">
+      <div className="w-full text-gray-700 border-b-2 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800">
         <div
           x-data="{ open: false }"
           className="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
