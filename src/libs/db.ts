@@ -1,4 +1,4 @@
-import { Todo } from 'models';
+import { Todo } from 'src/models';
 
 export class DB {
   private toDo: Todo[];

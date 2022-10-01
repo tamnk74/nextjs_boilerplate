@@ -1,4 +1,4 @@
-import { Todo } from 'models/Todo';
+import { Todo } from 'src/models/Todo';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 type TodoRes = {

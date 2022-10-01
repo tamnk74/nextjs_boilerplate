@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { MainLayout } from 'components/layouts';
+import { MainLayout } from 'src/components/layouts';
 import { useForm } from 'react-hook-form';
-import { Todo } from 'models';
+import { Todo } from 'src/models';
 import axios from 'axios';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
