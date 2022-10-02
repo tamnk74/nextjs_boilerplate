@@ -24,7 +24,19 @@ module.exports = {
     '@typescript-eslint/prefer-includes': 'error',
     '@typescript-eslint/prefer-nullish-coalescing': 'error',
     '@typescript-eslint/prefer-string-starts-ends-with': 'error',
-    '@typescript-eslint/require-array-sort-compare': 'error'
+    '@typescript-eslint/require-array-sort-compare': 'error',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        varsIgnorePattern: '^_'
+      }
+    ],
+    'no-empty': [
+      'error',
+      {
+        allowEmptyCatch: true
+      }
+    ]
   },
   ignorePatterns: [
     '.next',
@@ -32,8 +44,13 @@ module.exports = {
     'node_modules',
     'next.config.js',
     'jest.config.js',
+    'tailwind.config.js',
+    'postcss.config.js',
+    'lint-staged.config.js',
+    '.eslintrc.js',
     'cypress/plugins/index.js',
-    'public/mockServiceWorker.js'
+    'public/mockServiceWorker.js',
+    'commitlint.config.js'
   ],
   overrides: [
     {
