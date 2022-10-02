@@ -6,12 +6,14 @@ import './MainLayout.module.scss';
 type AppProps = {
   children: React.ReactElement | React.ReactElement[];
   home?: boolean;
+  post?: boolean;
   siteTitle?: string;
 };
 
 export function MainLayout({
   children,
   home = false,
+  post = false,
   siteTitle = 'Nextjs'
 }: AppProps): React.ReactElement {
   return (
@@ -48,14 +50,24 @@ export function MainLayout({
           </nav>
         </div>
       </div>
-      <main>{children}</main>
-      {!home && (
-        <div className="back-to-home">
+      <main className='min-h-screen'>{children}</main>
+      {(!home && !post) && (
+        <div className="px-12 py-10">
           <Link href="/">
-            <a>← Back to home</a>
+            <a className='text-secondary'>← Back to home</a>
           </Link>
         </div>
       )}
+      {post && (
+        <div className="px-12 py-10">
+          <Link href="/posts">
+            <a className='text-secondary'>← Back to Post List</a>
+          </Link>
+        </div>
+      )}
+      <footer className='px-12 py-2 bg-light-300 text-info'>
+        Let's learn Nextjs
+      </footer>
     </div>
   );
 }

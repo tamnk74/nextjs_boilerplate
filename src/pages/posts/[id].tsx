@@ -15,13 +15,13 @@ export default function Post({
   };
 }): React.ReactElement {
   return (
-    <MainLayout siteTitle={postData.title}>
+    <MainLayout post siteTitle={postData.title}>
       <Head>
         <title>{postData.title}</title>
       </Head>
-      <article>
-        <h1 className="headingXl">{postData.title}</h1>
-        <div className="lightText">{postData.date.toString()}</div>
+      <article className='px-12 pt-6 pb-16'>
+        <h1 className="text-h1 text-info">{postData.title}</h1>
+        <div className="text-light-600 pb-12">{postData.date.toString()}</div>
         <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
       </article>
     </MainLayout>

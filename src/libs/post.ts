@@ -7,7 +7,7 @@ import { Post } from 'src/models/Post';
 
 const postsDirectory = path.join(process.cwd(), '/src/data/posts');
 
-export function getSortedPostsData(): Promise<Post[]> {
+export function getSortedPostsData(tag?: string): Promise<Post[]> {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
@@ -20,15 +20,14 @@ export function getSortedPostsData(): Promise<Post[]> {
 
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents);
-
     // Combine the data with the id
     return {
       id,
-      ...(matterResult.data as { date: string; title: string })
+      ...(matterResult.data as { date: string; title: string, tags?: string[] })
     };
   });
   // Sort posts by date
-  return Promise.resolve(allPostsData.sort((a, b) => {
+  return Promise.resolve(allPostsData.filter(post => post.title && (tag ? post?.tags.includes(tag) : true)).sort((a, b) => {
     if (a.date < b.date) {
       return 1;
     } else {
