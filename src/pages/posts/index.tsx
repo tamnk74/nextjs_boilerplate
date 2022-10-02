@@ -32,8 +32,8 @@ export default function Post({ allPostsData }: { allPostsData: Post[] }): React.
               <br />
               <small className="text-secondary">{date}</small> <span> | </span>
               {
-                tags?.map(tag => (<Link href={`/tags/${tag}/posts/`}>
-                <a className="text-grad-dark underline px-1">{tag}</a>
+                tags?.map(tag => (<Link href={`tags/${tag}/posts/`}>
+                <a className="text-grad-dark underline px-1" key={tag}>{tag}</a>
               </Link>))
               }
             </li>

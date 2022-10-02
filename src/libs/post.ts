@@ -27,7 +27,7 @@ export function getSortedPostsData(tag?: string): Promise<Post[]> {
     };
   });
   // Sort posts by date
-  return Promise.resolve(allPostsData.filter(post => post.title && (tag ? post?.tags.includes(tag) : true)).sort((a, b) => {
+  return Promise.resolve(allPostsData.filter(post => post.title && (tag ? post?.tags?.includes(tag) : true)).sort((a, b) => {
     if (a.date < b.date) {
       return 1;
     } else {

@@ -34,14 +34,15 @@ export default function Home(): React.ReactElement {
       await queryClient.invalidateQueries('todos');
     }
   });
-  const onSubmit = (data) => {
+  const onSubmit = (data: Todo) => {
     mutation.mutate(data);
     reset({
       name: ''
     });
   };
 
-  const toDos = query.data || [];
+  const toDos = query.data ?? [];
+  
   return (
     <MainLayout home>
       <Head>
